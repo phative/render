@@ -19,14 +19,16 @@ readonly class EntryWidgetFactory implements WidgetFactory
 
     public function build(Container $container, array $options = []): Entry
     {
-        if (null !== $this->onSubmit) {
-            $options['onSubmit'] = $this->onSubmit;
-        }
-
-        return new Entry(
+        $entry = new Entry(
             $container,
             (string)$this->value,
             $options,
         );
+
+        if (null !== $this->onSubmit) {
+            $entry->onSubmit($this->onSubmit);
+        }
+
+        return $entry;
     }
 }

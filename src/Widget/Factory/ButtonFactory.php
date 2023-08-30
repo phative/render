@@ -18,14 +18,16 @@ readonly class ButtonFactory implements WidgetFactory
 
     public function build(Container $container, array $options = []): Button
     {
-        if (null !== $this->onClick) {
-            $options['onClick'] = $this->onClick;
-        }
-
-        return new Button(
+        $button = new Button(
             $container,
             $this->title,
             $options,
         );
+
+        if (null !== $this->onClick) {
+            $button->onClick($this->onClick);
+        }
+
+        return $button;
     }
 }
