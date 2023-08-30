@@ -1,0 +1,33 @@
+{
+    "name": "phative/render",
+    "description": "Rendering module of phative",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Phative\\Render\\": "src/",
+            "Pharive\\Render\\Test\\": "tests/"
+        },
+        "files": [
+            "src/Widget/widget.php",
+            "src/State/state.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Mateusz Cholewka",
+            "email": "mateusz@cholewka.com.pl"
+        }
+    ],
+    "require": {
+        "skoro/tkui": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/skoro/php-tkui"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.3"
+    }
+}
