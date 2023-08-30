@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "Phative\\Render\\": "src/",
-            "Pharive\\Render\\Test\\": "tests/"
+            "Phative\\Render\\Test\\": "tests/"
         },
         "files": [
             "src/Widget/widget.php",
