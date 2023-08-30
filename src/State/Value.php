@@ -37,7 +37,7 @@ class Value
             return;
         }
 
-        call_user_func([$this->valueInVariable, 'setValue']);
+        call_user_func([$this->valueInVariable, 'setValue'], $value);
     }
 
     public function __toString(): string
