@@ -25,6 +25,8 @@ readonly class EntryWidgetFactory implements WidgetFactory
             $options,
         );
 
+        $this->value->attach($entry);
+
         if (null !== $this->onSubmit) {
             $entry->onSubmit($this->onSubmit);
         }
