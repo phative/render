@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Phative\Render;
 
+use Phative\Render\Style\Strategy\Height;
 use Phative\Render\Style\Strategy\Padding;
+use Phative\Render\Style\Strategy\Side;
+use Phative\Render\Style\Strategy\Width;
 use Phative\Render\Style\StyleParser;
 use Phative\Render\Widget\Factory\ButtonFactory;
 use Phative\Render\Widget\Factory\EntryWidgetFactory;
@@ -21,6 +24,9 @@ class Renderer
     public function __construct() {
         $this->styleParser = new StyleParser(
             new Padding(),
+            new Side(),
+            new Height(),
+            new Width(),
         );
     }
 
