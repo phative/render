@@ -6,10 +6,13 @@ namespace Phative\Render\Style;
 
 readonly class StyleParser
 {
-    /**
-     * @param Strategy[] $strategies
-     */
-    public function __construct(private array $strategies) {}
+    /** @var Strategy[] */
+    private array $strategies;
+
+    public function __construct(Strategy ...$strategies)
+    {
+        $this->strategies = $strategies;
+    }
 
     /**
      * @return array<string, string>[]

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Phative\Render\Test\Style;
+namespace Phative\Render\Tests\Style;
 
 use Phative\Render\Style\Strategy\Padding;
+use Phative\Render\Style\Strategy\Side;
 use Phative\Render\Style\StyleParser;
 use PHPUnit\Framework\TestCase;
 
@@ -14,16 +15,18 @@ class StyleParserTest extends TestCase
 
     public function setUp(): void
     {
-        $paddingStrategy = new Padding();
-        $this->styleParser = new StyleParser([
-            $paddingStrategy,
-        ]);
+        $padding = new Padding();
+        $side = new Side();
+        $this->styleParser = new StyleParser(
+            $padding,
+            $side,
+        );
     }
 
     /**
      * @dataProvider stylesDataProvider
      */
-    public function testBasicPaddingParsing($cls, $style = null): void
+    public function testParsingStyles($cls, $style = null): void
     {
         if (null === $style) {
             self::expectException(\Exception::class);
@@ -50,6 +53,11 @@ class StyleParserTest extends TestCase
             ['p-97', null],
             ['p-120', null],
             ['p-abcd', null],
+            ['left', ['side' => 'left']],
+            ['right', ['side' => 'right']],
+            ['top', ['side' => 'top']],
+            ['bottom', ['side' => 'bottom']],
+            ['width', ]
         ];
     }
 }

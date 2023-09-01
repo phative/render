@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Phative\Render\Test;
+namespace Phative\Render\Tests;
 
 use Phative\Render\Renderer;
 use Phative\Render\State\Value;
