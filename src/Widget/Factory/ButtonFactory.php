@@ -6,6 +6,7 @@ namespace Phative\Render\Widget\Factory;
 
 use Closure;
 use Phative\Render\Style\StyleParser;
+use Phative\Render\Style\StyleType;
 use Tkui\Widgets\Buttons\Button;
 use Tkui\Widgets\Container;
 
@@ -19,7 +20,7 @@ readonly class ButtonFactory implements WidgetFactory
 
     public function build(Container $container, StyleParser $parser, array $options = []): Button
     {
-        $styleOptions = $parser->parse($this->style);
+        $styleOptions = $parser->parse($this->style, StyleType::WIDGET);
 
         $button = new Button(
             $container,

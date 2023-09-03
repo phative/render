@@ -12,4 +12,6 @@ interface Strategy
      * @return array<string, mixed>
      */
     public function parse(string $cls): array;
+
+    public function styleType(): StyleType;
 }

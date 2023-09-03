@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Phative\Render;
 
 use Phative\Render\Style\Strategy\Height;
+use Phative\Render\Style\Strategy\Justify;
 use Phative\Render\Style\Strategy\Padding;
 use Phative\Render\Style\Strategy\Side;
 use Phative\Render\Style\Strategy\Width;
 use Phative\Render\Style\StyleParser;
+use Phative\Render\Style\StyleType;
 use Phative\Render\Widget\Factory\ButtonFactory;
 use Phative\Render\Widget\Factory\EntryWidgetFactory;
 use Phative\Render\Widget\Factory\FrameWidgetFactory;
@@ -27,6 +29,7 @@ class Renderer
             new Side(),
             new Height(),
             new Width(),
+            new Justify(),
         );
     }
 
@@ -39,18 +42,21 @@ class Renderer
             $this->build($currentFrame, $widgetFactory);
         }
 
-        return $this->widgets;
+        return [ $this->widgets, $this->styleParser->parse($frameFactory->style, StyleType::PACK) ];
     }
 
     private function build(Frame $currentFrame, WidgetFactory $widgetFactory): void
     {
+        $packStyles = $this->styleParser->parse($widgetFactory->style, StyleType::PACK);
+
         switch ($widgetFactory::class) {
             case FrameWidgetFactory::class:
-                $currentFrame->pack($this->render($currentFrame, $widgetFactory));
+                $currentFrame->pack($this->render($currentFrame, $widgetFactory), $packStyles);
                 break;
             case EntryWidgetFactory::class:
             case ButtonFactory::class:
                 $widget = $widgetFactory->build($currentFrame, $this->styleParser);
+                $currentFrame->pack($widget, $packStyles);
                 $this->widgets[$widget->path()] = $widget;
                 break;
         }

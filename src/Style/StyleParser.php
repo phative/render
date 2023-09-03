@@ -17,7 +17,7 @@ readonly class StyleParser
     /**
      * @return array<string, string>[]
      */
-    public function parse(string $style): array
+    public function parse(string $style, StyleType $styleType): array
     {
         $clss = explode(' ', $style);
 
@@ -26,6 +26,10 @@ readonly class StyleParser
         foreach ($clss as $cls) {
             foreach ($this->strategies as $strategy) {
                 if (!$strategy->supports($cls)) {
+                    continue;
+                }
+
+                if ($strategy->styleType() !== $styleType) {
                     continue;
                 }
 

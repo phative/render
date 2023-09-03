@@ -6,12 +6,18 @@ namespace Phative\Render\Style\Strategy;
 
 use Phative\Render\Style\SizeUnit;
 use Phative\Render\Style\Strategy;
+use Phative\Render\Style\StyleType;
 
 class Width implements Strategy
 {
     public function supports(string $cls): bool
     {
         return str_starts_with($cls, 'w-');
+    }
+
+    public function styleType(): StyleType
+    {
+        return StyleType::WIDGET;
     }
 
     public function parse(string $cls): array

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phative\Render\Style\Strategy;
 
 use Phative\Render\Style\Strategy;
+use Phative\Render\Style\StyleType;
 
 class Side implements Strategy
 {
@@ -13,6 +14,11 @@ class Side implements Strategy
     public function supports(string $cls): bool
     {
         return in_array($cls, self::SIDES);
+    }
+
+    public function styleType(): StyleType
+    {
+        return StyleType::PACK;
     }
 
     public function parse(string $cls): array

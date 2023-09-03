@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phative\Render\Widget\Factory;
 
 use Phative\Render\Style\StyleParser;
+use Phative\Render\Style\StyleType;
 use Tkui\Widgets\Container;
 use Tkui\Widgets\Frame;
 
@@ -20,7 +21,7 @@ readonly class FrameWidgetFactory implements WidgetFactory
 
     public function build(Container $container, StyleParser $parser, array $options = []): Frame
     {
-        $styleOptions = $parser->parse($this->style);
+        $styleOptions = $parser->parse($this->style, StyleType::WIDGET);
 
         return new Frame($container, array_merge($styleOptions, $options));
     }

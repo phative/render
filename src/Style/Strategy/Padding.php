@@ -6,12 +6,18 @@ namespace Phative\Render\Style\Strategy;
 
 use Phative\Render\Style\SizeUnit;
 use Phative\Render\Style\Strategy;
+use Phative\Render\Style\StyleType;
 
 class Padding implements Strategy
 {
     public function supports(string $cls): bool
     {
         return str_starts_with($cls, 'p-');
+    }
+
+    public function styleType(): StyleType
+    {
+        return StyleType::PACK;
     }
 
     public function parse(string $cls): array
@@ -39,7 +45,10 @@ class Padding implements Strategy
         $realSize = $size * SizeUnit::ONE;
 
         return [
-            'padding' => $realSize,
+            'padx' => $realSize,
+            'pady' => $realSize,
+            'ipadx' => $realSize,
+            'ipady' => $realSize,
         ];
     }
 }

@@ -7,6 +7,7 @@ namespace Phative\Render\Widget\Factory;
 use Closure;
 use Phative\Render\State\Value;
 use Phative\Render\Style\StyleParser;
+use Phative\Render\Style\StyleType;
 use Tkui\Widgets\Container;
 use Tkui\Widgets\Entry;
 
@@ -20,7 +21,7 @@ readonly class EntryWidgetFactory implements WidgetFactory
 
     public function build(Container $container, StyleParser $parser, array $options = []): Entry
     {
-        $styleOptions = $parser->parse($this->style);
+        $styleOptions = $parser->parse($this->style, StyleType::WIDGET);
 
         $entry = new Entry(
             $container,
