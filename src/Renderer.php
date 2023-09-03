@@ -47,15 +47,15 @@ class Renderer
 
     private function build(Frame $currentFrame, WidgetFactory $widgetFactory): void
     {
-        $packStyles = $this->styleParser->parse($widgetFactory->style, StyleType::PACK);
-
         switch ($widgetFactory::class) {
             case FrameWidgetFactory::class:
-                $currentFrame->pack($this->render($currentFrame, $widgetFactory), $packStyles);
+                [$widgets, $packStyles] = $this->render($currentFrame, $widgetFactory);
+                $currentFrame->pack($widgets, $packStyles);
                 break;
             case EntryWidgetFactory::class:
             case ButtonFactory::class:
                 $widget = $widgetFactory->build($currentFrame, $this->styleParser);
+                $packStyles = $this->styleParser->parse($widgetFactory->style, StyleType::PACK);
                 $currentFrame->pack($widget, $packStyles);
                 $this->widgets[$widget->path()] = $widget;
                 break;
