@@ -16,9 +16,9 @@ function frame(string $style, WidgetFactory ...$widgetFactories): FrameWidgetFac
     return new FrameWidgetFactory($style, $widgetFactories);
 }
 
-function entry(string $style, Value $value, ?Closure $onSubmit = null): EntryWidgetFactory
+function entry(string $style, Value $value, ?Closure $onSubmit = null, bool $readonly = false, $disabled = false, bool $password = false): EntryWidgetFactory
 {
-    return new EntryWidgetFactory($style, $value, $onSubmit);
+    return new EntryWidgetFactory($style, $value, $onSubmit, $readonly, $disabled, $password);
 }
 
 function button(string $style, string $title, ?Closure $onClick = null): ButtonFactory

@@ -47,8 +47,6 @@ class Padding implements Strategy
         return [
             'padx' => $realSize,
             'pady' => $realSize,
-            'ipadx' => $realSize,
-            'ipady' => $realSize,
         ];
     }
 }

@@ -42,7 +42,7 @@ class Renderer
             $this->build($currentFrame, $widgetFactory);
         }
 
-        return [ $this->widgets, $this->styleParser->parse($frameFactory->style, StyleType::PACK) ];
+        return [ $currentFrame, $this->styleParser->parse($frameFactory->style, StyleType::PACK) ];
     }
 
     private function build(Frame $currentFrame, WidgetFactory $widgetFactory): void
